@@ -1,47 +1,49 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-a{
+
+a {
   text-decoration: none;
 }
 
-.main-container{
+.main-container {
   display: flex;
 }
 
-main{
+main {
   padding: 20px;
 }
 
-.title{
+.title {
   font-size: 30px;
 }
 
-.sidebar{
+.sidebar {
   background: rgb(0, 7, 61);
   color: white;
   height: 100vh;
+  overflow-y: auto;
 }
 
-.routes{
-  color:white
+.routes {
+  color: white
 }
 
-.top_section{
+.top_section {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 15px 10px;
 }
 
-.logo{
+.logo {
   font-size: 18px;
   line-height: 0;
 }
 
-.search{
+.search {
   display: flex;
   align-items: center;
   margin: 10px 0;
@@ -49,33 +51,52 @@ main{
   padding: 10px;
 }
 
-.search input{
+.search input {
   border: none;
   margin-left: 10px;
   border-radius: 5px;
-  background: rgb(238,238,238);
+  background: rgb(238, 238, 238);
 }
 
-.link{
+.link {
   display: flex;
   color: white;
   gap: 10px;
   padding: 5px 10px;
-  transition: .2s cubic-bezier(0.6,-0.28,0.735,0.045);
+  transition: .2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 
 }
-.link:hover{
+
+.link:hover {
   border-right: 4px solid white;
-  transition: .2s cubic-bezier(0.6,-0.28,0.735,0.045);
-  background: rgb(45,51,89);
+  transition: .2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  background: rgb(45, 51, 89);
 }
 
-.active{
+.active {
   border-right: 4px solid white;
-  background: rgb(45,51,89);
+  background: rgb(45, 51, 89);
 }
 
-.link_text{
+.link_text {
   white-space: nowrap;
   font-size: 15px;
+}
+
+.menu {
+  display: flex;
+  color: white;
+  gap: 10px;
+  padding: 5px 10px;
+  transition: .2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.menu_item {
+  display: flex;
+  gap: 10px;
+}
+
+.menu_container .link {
+  padding-left: 20px;
+  border-bottom: .5px solid #fff;
 }

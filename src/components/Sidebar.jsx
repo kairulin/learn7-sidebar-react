@@ -1,12 +1,20 @@
 import { AnimatePresence, motion } from "framer-motion";
 
-import { FaHome, FaUser, FaBars } from "react-icons/fa"
+import {
+  FaHome,
+  FaUser,
+  FaBars,
+  FaLock,
+  FaMoneyBill,
+  FaAngleDown
+} from "react-icons/fa"
 import { AiTwotoneFileExclamation, AiFillHeart } from "react-icons/ai"
 import { BiAnalyse, BiCog, BiSearch } from "react-icons/bi"
 import { BsCartCheck } from "react-icons/bs"
 import { MdMessage } from "react-icons/md"
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import SidebarMenu from "./SidebarMenu";
 
 const routes = [
   {
@@ -32,7 +40,24 @@ const routes = [
   {
     path: "/file-manager",
     name: "File Manager",
-    icon: <AiTwotoneFileExclamation />
+    icon: <AiTwotoneFileExclamation />,
+    subRoutes: [
+      {
+        path: "/settings/profile",
+        name: "Profile",
+        icon: <FaUser />,
+      },
+      {
+        path: "/settings/2fa",
+        name: "2FA",
+        icon: <FaLock />,
+      },
+      {
+        path: "/settings/Billing",
+        name: "Billing",
+        icon: <FaMoneyBill />,
+      },
+    ]
   },
   {
     path: "/order",
@@ -40,15 +65,33 @@ const routes = [
     icon: <BsCartCheck />
   },
   {
+    path: "/settings",
+    name: "Settings",
+    icon: <BiCog />,
+    subRoutes: [
+      {
+        path: "/settings/profile",
+        name: "Profile",
+        icon: <FaUser />,
+      },
+      {
+        path: "/settings/2fa",
+        name: "2FA",
+        icon: <FaLock />,
+      },
+      {
+        path: "/settings/Billing",
+        name: "Billing",
+        icon: <FaMoneyBill />,
+      },
+    ]
+  },
+  {
     path: "/saved",
     name: "Saved",
     icon: <AiFillHeart />
   },
-  {
-    path: "/settings",
-    name: "Settings",
-    icon: <BiCog />
-  },
+
 ]
 
 const Sidebar = ({ children }) => {
@@ -71,7 +114,7 @@ const Sidebar = ({ children }) => {
       transition: {
         duration: 0.2,
       }
-    }    
+    }
   }
   const showAnimation = {
     hidden: {
@@ -91,7 +134,7 @@ const Sidebar = ({ children }) => {
   }
   return (
     <div className="main-container">
-      <motion.div animate={{ width: isOpen ? "200px" : "35px",transition:{duration:0.5,type:"spring",damping:11,} }} className="sidebar">
+      <motion.div animate={{ width: isOpen ? "200px" : "35px", transition: { duration: 0.5, type: "spring", damping: 11, } }} className="sidebar">
         <div className="top_section">
           {isOpen && <motion.h1 initial="hidden" animate="show" exit="hidden" variants={showAnimation} className="logo">LearnSomeCoding</motion.h1>}
           <div className="bars">
@@ -107,14 +150,21 @@ const Sidebar = ({ children }) => {
           </AnimatePresence>
         </div>
         <section className="routes">
-          {routes.map((route) => (
-            <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
-              <div className="icon">{route.icon}</div>
-              <AnimatePresence>
-                {isOpen && <motion.div initial="hidden" animate="show" exit="hidden" variants={showAnimation} className="link_text">{route.name}</motion.div>}
-              </AnimatePresence>
-            </NavLink>
-          ))}
+          {routes.map((route, index) => {
+            if (route.subRoutes) {
+              return (
+                <SidebarMenu showAnimation={showAnimation} isOpen={isOpen} setIsOpen={setIsOpen} route={route} key={route.name} />
+              )
+            }
+            return (
+              <NavLink key={index} activeClassName="active" to={route.path} className="link">
+                <div className="icon">{route.icon}</div>
+                <AnimatePresence>
+                  {isOpen && <motion.div initial="hidden" animate="show" exit="hidden" variants={showAnimation} className="link_text">{route.name}</motion.div>}
+                </AnimatePresence>
+              </NavLink>
+            )
+          })}
         </section>
       </motion.div>
       <main>{children}</main>
