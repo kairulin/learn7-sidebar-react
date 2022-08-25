@@ -1,5 +1,5 @@
 # Learn it from YT
-[React Sidebar With Dropdown Menu Tutorial | Framer Motion | Hindi](https://www.youtube.com/watch?v=yAuOgVck1Ls&ab_channel=DoSomeCoding)
+[React Sidebar Navigation using Framer Motion | Beginners React Tutorial](https://www.youtube.com/watch?v=eujA1RS9fDI&ab_channel=DoSomeCoding)
 [React Sidebar With Dropdown Menu Tutorial | Framer Motion | Hindi](https://www.youtube.com/watch?v=yAuOgVck1Ls&ab_channel=DoSomeCoding)
 # Getting Started with Create React App
 
